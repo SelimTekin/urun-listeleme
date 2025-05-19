@@ -1,0 +1,17 @@
+.appbar {
+  background-color: #f9f9f9; // göz yormayan açık ton
+  color: #333;
+  padding: 0 24px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
+}
+
+.logo {
+  font-weight: 600;
+  color: #222;
+}

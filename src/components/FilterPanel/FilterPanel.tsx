@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 import {
   Typography,
-  Box,
   Autocomplete,
   TextField,
   Checkbox,
   FormGroup,
   FormControlLabel,
-} from "@mui/material";
+} from '@mui/material';
+import styles from '../../styles/FilterPanel.module.scss';
 
 interface Props {
   categories: string[];
@@ -15,34 +15,23 @@ interface Props {
   onChange: (category: string) => void;
   categoryCounts: Record<string, number>;
 }
-const FilterPanel = ({ categories,
-  selected,
-  onChange,
-  categoryCounts, }: Props) => {
+
+const FilterPanel = ({ categories, selected, onChange, categoryCounts }: Props) => {
   const handleAutocompleteChange = (
     _event: React.SyntheticEvent,
     values: string[]
   ) => {
-    // Karşılaştırmalı toggle mantığı
     categories.forEach((category) => {
       const isNowSelected = selected.includes(category);
       const willBeSelected = values.includes(category);
 
-      if (!isNowSelected && willBeSelected) onChange(category); // seçildi
-      if (isNowSelected && !willBeSelected) onChange(category); // kaldırıldı
+      if (!isNowSelected && willBeSelected) onChange(category);
+      if (isNowSelected && !willBeSelected) onChange(category);
     });
   };
 
   return (
-    <Box
-      sx={{
-        p: 2,
-        borderRight: "1px solid #eee",
-        minHeight: "100%",
-        backgroundColor: "#fafafa",
-        borderRadius: 2,
-      }}
-    >
+    <div className={styles.wrapper}>
       <Typography variant="h6" gutterBottom>
         Kategoriler
       </Typography>
@@ -59,7 +48,10 @@ const FilterPanel = ({ categories,
         isOptionEqualToValue={(option, value) => option === value}
         renderOption={(props, option, { selected }) => (
           <li {...props}>
-            <Checkbox style={{ marginRight: 8 }} checked={selected} />
+            <Checkbox
+              style={{ marginRight: 8 }}
+              checked={selected}
+            />
             {option} ({categoryCounts[option] || 0})
           </li>
         )}
@@ -67,10 +59,10 @@ const FilterPanel = ({ categories,
           <TextField {...params} label="Kategori Ara" placeholder="Seç..." />
         )}
         size="small"
-        sx={{ mb: 2 }}
+        className={styles.autocomplete}
       />
 
-      <FormGroup>
+      <FormGroup className={styles.group}>
         {categories.map((category) => (
           <FormControlLabel
             key={category}
@@ -84,7 +76,7 @@ const FilterPanel = ({ categories,
           />
         ))}
       </FormGroup>
-    </Box>
+    </div>
   );
 };
 

@@ -7,9 +7,10 @@ import {
   ListItem,
   ListItemText,
   Button,
-} from "@mui/material";
-import { Close } from "@mui/icons-material";
-import { useStore } from "../../store/useStore";
+} from '@mui/material';
+import { Close } from '@mui/icons-material';
+import { useStore } from '../../store/useStore';
+import styles from '../../styles/CartDrawer.module.scss';
 
 interface CartDrawerProps {
   open: boolean;
@@ -28,28 +29,24 @@ const CartDrawer = ({ open, onClose }: CartDrawerProps) => {
 
   return (
     <Drawer anchor="right" open={open} onClose={onClose}>
-      <Box sx={{ width: 400, p: 3 }}>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box className={styles.drawer}>
+        <div className={styles.header}>
           <Typography variant="h5" fontWeight="bold">
             Sepet
           </Typography>
-
           <IconButton onClick={onClose}>
             <Close />
           </IconButton>
-        </Box>
+        </div>
 
         <List>
           {cart.map((item) => (
-            <ListItem
-              key={item.product.id}
-              sx={{ mb: 2, pb: 2, borderBottom: "1px solid #eee" }}
-            >
+            <ListItem key={item.product.id} className={styles.item}>
               <ListItemText
                 primary={item.product.title}
                 secondary={`Adet: ${item.quantity} - Fiyat: $${item.product.price}`}
               />
-              <Box display="flex" gap={1} mt={1}>
+              <div className={styles.actions}>
                 <Button
                   variant="outlined"
                   size="small"
@@ -77,12 +74,12 @@ const CartDrawer = ({ open, onClose }: CartDrawerProps) => {
                 >
                   Sil
                 </Button>
-              </Box>
+              </div>
             </ListItem>
           ))}
         </List>
 
-        <Typography variant="h6" textAlign="right" mt={3}>
+        <Typography className={styles.total}>
           Toplam: ${totalPrice.toFixed(2)}
         </Typography>
       </Box>

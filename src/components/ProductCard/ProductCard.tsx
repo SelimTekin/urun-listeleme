@@ -1,4 +1,3 @@
-import { Product } from "../../models/Product";
 import {
   Card,
   CardContent,
@@ -6,7 +5,10 @@ import {
   Typography,
   CardActions,
   Button,
+  Box,
 } from "@mui/material";
+import { Product } from "../../models/Product";
+import styles from "../../styles/ProductCard.module.scss";
 
 interface Props {
   product: Product;
@@ -15,28 +17,13 @@ interface Props {
 
 const ProductCard = ({ product, onAddToCart }: Props) => {
   return (
-    <Card
-      sx={{
-        maxWidth: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        borderRadius: 3,
-        boxShadow: 3,
-        transition: "transform 0.2s",
-        "&:hover": { transform: "scale(1.02)" },
-      }}
-    >
-      <CardMedia
-        component="img"
-        height="200"
-        image={product.image}
-        alt={product.title}
-        sx={{ objectFit: "contain", p: 2 }}
-      />
+    <Card className={styles.card}>
+      <Box className={styles.imageWrapper}>
+  <img src={product.image} alt={product.title} className={styles.image} />
+</Box>
 
-      <CardContent sx={{ flexGrow: 1 }}>
+
+      <CardContent>
         <Typography variant="h6" gutterBottom>
           {product.title}
         </Typography>
@@ -50,10 +37,9 @@ const ProductCard = ({ product, onAddToCart }: Props) => {
       <CardActions>
         <Button
           variant="contained"
-          color="primary"
-          fullWidth
-          sx={{ mt: 1 }}
           onClick={onAddToCart}
+          fullWidth
+          className={styles.button}
         >
           Sepete Ekle
         </Button>

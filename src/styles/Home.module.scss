@@ -1,0 +1,21 @@
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.controlItem {
+  flex: 1;
+  min-width: 200px;
+}
+
+.gridContainer {
+  padding-top: 16px;
+}
+
+.productsWrapper {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
