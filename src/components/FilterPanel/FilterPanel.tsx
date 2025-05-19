@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Typography,
   Box,
@@ -7,7 +7,7 @@ import {
   Checkbox,
   FormGroup,
   FormControlLabel,
-} from '@mui/material';
+} from "@mui/material";
 
 interface Props {
   categories: string[];
@@ -38,15 +38,14 @@ const FilterPanel: React.FC<Props> = ({
 
   return (
     <Box
-  sx={{
-    p: 2,
-    borderRight: '1px solid #eee',
-    minHeight: '100%',
-    backgroundColor: '#fafafa',
-    borderRadius: 2,
-  }}
->
-
+      sx={{
+        p: 2,
+        borderRight: "1px solid #eee",
+        minHeight: "100%",
+        backgroundColor: "#fafafa",
+        borderRadius: 2,
+      }}
+    >
       <Typography variant="h6" gutterBottom>
         Kategoriler
       </Typography>

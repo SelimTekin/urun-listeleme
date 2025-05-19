@@ -1,5 +1,5 @@
-import React from 'react';
-import { Product } from '../../models/Product';
+import React from "react";
+import { Product } from "../../models/Product";
 import {
   Card,
   CardContent,
@@ -7,7 +7,7 @@ import {
   Typography,
   CardActions,
   Button,
-} from '@mui/material';
+} from "@mui/material";
 
 interface Props {
   product: Product;
@@ -17,26 +17,25 @@ interface Props {
 const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
   return (
     <Card
-  sx={{
-    maxWidth: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: 3,
-    boxShadow: 3,
-    transition: 'transform 0.2s',
-    '&:hover': { transform: 'scale(1.02)' },
-  }}
->
-
+      sx={{
+        maxWidth: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        borderRadius: 3,
+        boxShadow: 3,
+        transition: "transform 0.2s",
+        "&:hover": { transform: "scale(1.02)" },
+      }}
+    >
       <CardMedia
-  component="img"
-  height="200"
-  image={product.image}
-  alt={product.title}
-  sx={{ objectFit: 'contain', p: 2 }}
-/>
+        component="img"
+        height="200"
+        image={product.image}
+        alt={product.title}
+        sx={{ objectFit: "contain", p: 2 }}
+      />
 
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="h6" gutterBottom>
@@ -51,16 +50,14 @@ const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
       </CardContent>
       <CardActions>
         <Button
-  variant="contained"
-  color="primary"
-  fullWidth
-  sx={{ mt: 1 }}
-  onClick={onAddToCart}
->
-  Sepete Ekle
-</Button>
-
-
+          variant="contained"
+          color="primary"
+          fullWidth
+          sx={{ mt: 1 }}
+          onClick={onAddToCart}
+        >
+          Sepete Ekle
+        </Button>
       </CardActions>
     </Card>
   );

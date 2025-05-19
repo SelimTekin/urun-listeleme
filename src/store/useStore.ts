@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { Product } from '../models/Product';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { Product } from "../models/Product";
 
 interface CartItem {
   product: Product;
@@ -25,7 +25,9 @@ export const useStore = create<StoreState>()(
       setProducts: (products) => set({ products }),
 
       addToCart: (product) => {
-        const existing = get().cart.find((item) => item.product.id === product.id);
+        const existing = get().cart.find(
+          (item) => item.product.id === product.id
+        );
         if (existing) {
           set({
             cart: get().cart.map((item) =>
@@ -57,7 +59,7 @@ export const useStore = create<StoreState>()(
         }),
     }),
     {
-      name: 'cart-storage', // localStorage key
+      name: "cart-storage", // localStorage key
       partialize: (state) => ({ cart: state.cart }), // sadece `cart` alanını sakla
     }
   )

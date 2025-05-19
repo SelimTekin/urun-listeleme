@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Drawer,
   IconButton,
@@ -8,9 +8,9 @@ import {
   ListItem,
   ListItemText,
   Button,
-} from '@mui/material';
-import { Close } from '@mui/icons-material';
-import { useStore } from '../../store/useStore';
+} from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { useStore } from "../../store/useStore";
 
 interface CartDrawerProps {
   open: boolean;
@@ -22,15 +22,18 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
   const updateQuantity = useStore((state) => state.updateQuantity);
   const removeFromCart = useStore((state) => state.removeFromCart);
 
-  const totalPrice = cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.product.price * item.quantity,
+    0
+  );
 
   return (
     <Drawer anchor="right" open={open} onClose={onClose}>
       <Box sx={{ width: 400, p: 3 }}>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="h5" fontWeight="bold">
-  Sepet
-</Typography>
+            Sepet
+          </Typography>
 
           <IconButton onClick={onClose}>
             <Close />
@@ -39,7 +42,10 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
 
         <List>
           {cart.map((item) => (
-            <ListItem key={item.product.id} sx={{ mb: 2, pb: 2, borderBottom: '1px solid #eee' }}>
+            <ListItem
+              key={item.product.id}
+              sx={{ mb: 2, pb: 2, borderBottom: "1px solid #eee" }}
+            >
               <ListItemText
                 primary={item.product.title}
                 secondary={`Adet: ${item.quantity} - Fiyat: $${item.product.price}`}
@@ -48,7 +54,9 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
                 <Button
                   variant="outlined"
                   size="small"
-                  onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                  onClick={() =>
+                    updateQuantity(item.product.id, item.quantity + 1)
+                  }
                 >
                   +
                 </Button>
@@ -56,7 +64,9 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
                   variant="outlined"
                   size="small"
                   disabled={item.quantity <= 1}
-                  onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                  onClick={() =>
+                    updateQuantity(item.product.id, item.quantity - 1)
+                  }
                 >
                   -
                 </Button>
@@ -74,9 +84,8 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
         </List>
 
         <Typography variant="h6" textAlign="right" mt={3}>
-  Toplam: ${totalPrice.toFixed(2)}
-</Typography>
-
+          Toplam: ${totalPrice.toFixed(2)}
+        </Typography>
       </Box>
     </Drawer>
   );
