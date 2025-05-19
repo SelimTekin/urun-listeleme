@@ -7,9 +7,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  TextField,
-  IconButton,
-  Badge,
+  TextField
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProductCard from '../components/ProductCard/ProductCard';
