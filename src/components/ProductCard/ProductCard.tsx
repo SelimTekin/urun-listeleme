@@ -1,4 +1,3 @@
-import React from "react";
 import { Product } from "../../models/Product";
 import {
   Card,
@@ -14,7 +13,7 @@ interface Props {
   onAddToCart: () => void;
 }
 
-const ProductCard: React.FC<Props> = ({ product, onAddToCart }) => {
+const ProductCard = ({ product, onAddToCart }: Props) => {
   return (
     <Card
       sx={{

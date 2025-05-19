@@ -6,7 +6,7 @@ interface Props {
   onSearchChange: (value: string) => void;
 }
 
-const SearchBar: React.FC<Props> = ({ searchTerm, onSearchChange }) => {
+const SearchBar = ({ searchTerm, onSearchChange }: Props) => {
   return (
     <TextField
       label="Ürün Ara"

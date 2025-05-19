@@ -17,7 +17,7 @@ interface CartDrawerProps {
   onClose: () => void;
 }
 
-const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
+const CartDrawer = ({ open, onClose }: CartDrawerProps) => {
   const cart = useStore((state) => state.cart);
   const updateQuantity = useStore((state) => state.updateQuantity);
   const removeFromCart = useStore((state) => state.removeFromCart);

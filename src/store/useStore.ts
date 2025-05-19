@@ -60,7 +60,7 @@ export const useStore = create<StoreState>()(
     }),
     {
       name: "cart-storage", // localStorage key
-      partialize: (state) => ({ cart: state.cart }), // sadece `cart` alanını sakla
+      partialize: (state) => ({ cart: state.cart }), // sadece cart alanını sakla
     }
   )
 );

@@ -15,13 +15,10 @@ interface Props {
   onChange: (category: string) => void;
   categoryCounts: Record<string, number>;
 }
-
-const FilterPanel: React.FC<Props> = ({
-  categories,
+const FilterPanel = ({ categories,
   selected,
   onChange,
-  categoryCounts,
-}) => {
+  categoryCounts, }: Props) => {
   const handleAutocompleteChange = (
     _event: React.SyntheticEvent,
     values: string[]

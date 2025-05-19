@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import {
@@ -18,9 +18,8 @@ import CartDrawer from "../components/CartDrawer/CartDrawer";
 import { useStore } from "../store/useStore";
 import { fetchProducts } from "../services/productService";
 
-const Home: React.FC = () => {
+const Home = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [categorySearchTerm, setCategorySearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("");
   const [searchTerm, setSearchTerm] = useState("");
