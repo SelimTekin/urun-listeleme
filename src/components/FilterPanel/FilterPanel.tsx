@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Typography,
   Autocomplete,
@@ -6,29 +6,41 @@ import {
   Checkbox,
   FormGroup,
   FormControlLabel,
-} from '@mui/material';
-import styles from '../../styles/FilterPanel.module.scss';
+} from "@mui/material";
+import styles from "../../styles/FilterPanel.module.scss";
 
 interface Props {
   categories: string[];
   selected: string[];
   onChange: (category: string) => void;
   categoryCounts: Record<string, number>;
+  autocompleteSelected: string[];
+  setAutocompleteSelected: (values: string[]) => void;
 }
 
-const FilterPanel = ({ categories, selected, onChange, categoryCounts }: Props) => {
+const FilterPanel = ({
+  categories,
+  selected,
+  onChange,
+  categoryCounts,
+  autocompleteSelected,
+  setAutocompleteSelected
+}: Props) => {
   const handleAutocompleteChange = (
-    _event: React.SyntheticEvent,
-    values: string[]
-  ) => {
-    categories.forEach((category) => {
-      const isNowSelected = selected.includes(category);
-      const willBeSelected = values.includes(category);
+  _event: React.SyntheticEvent,
+  values: string[]
+) => {
+  setAutocompleteSelected(values); // sadece autocomplete içeriğini güncelle
 
-      if (!isNowSelected && willBeSelected) onChange(category);
-      if (isNowSelected && !willBeSelected) onChange(category);
-    });
-  };
+  categories.forEach((category) => {
+    const isNowSelected = selected.includes(category);
+    const willBeSelected = values.includes(category);
+
+    if (!isNowSelected && willBeSelected) onChange(category); // eklendi
+    if (isNowSelected && !willBeSelected) onChange(category); // çıkarıldı
+  });
+};
+
 
   return (
     <div className={styles.wrapper}>
@@ -40,7 +52,7 @@ const FilterPanel = ({ categories, selected, onChange, categoryCounts }: Props) 
         multiple
         options={categories}
         disableCloseOnSelect
-        value={selected}
+        value={autocompleteSelected}
         onChange={handleAutocompleteChange}
         getOptionLabel={(option) =>
           `${option} (${categoryCounts[option] || 0})`
@@ -48,10 +60,7 @@ const FilterPanel = ({ categories, selected, onChange, categoryCounts }: Props) 
         isOptionEqualToValue={(option, value) => option === value}
         renderOption={(props, option, { selected }) => (
           <li {...props}>
-            <Checkbox
-              style={{ marginRight: 8 }}
-              checked={selected}
-            />
+            <Checkbox style={{ marginRight: 8 }} checked={selected} />
             {option} ({categoryCounts[option] || 0})
           </li>
         )}
